@@ -1,0 +1,107 @@
+---
+title: "Useful R Stuff"
+output:
+  html_document:
+    css: "style.css"
+    toc: true
+    toc_depth: 4
+    toc_float:
+      collapsed: false
+
+---
+<script src="fold_rmd.js"></script>
+
+
+<!-- <div class = "fold s o"></div> to hide "s"ource or "o"utput or both -->
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+
+```{r echo = FALSE, results = "hide", message = FALSE}
+library(tidyverse)
+```
+
+
+
+# Summarizing
+## Skimr::skim() - nice summary statistics for dfs and the like
+
+<div class = "fold o">
+```{r}
+library(skimr)
+iris %>% 
+  group_by(Species) %>% 
+  skim() %>% 
+  print() # print() only necessary so we don't get a kable table in this document
+```
+</div>
+
+---
+
+```{r}
+iris %>% 
+  skim() %>% 
+  summary() %>% 
+  print() # print() only necessary so we don't get a kable table in this document
+```
+
+---
+
+<div class = "fold o">
+```{r}
+iris %>% 
+  skim(Sepal.Length, Petal.Length) %>%  # tidyselect columns to summarize
+  print() # print() only necessary so we don't get a kable table in this document
+```
+</div>
+
+---
+
+<div class = "fold o">
+You can do cool stuff in the pipeline with it
+
+```{r}
+iris %>%
+  skim() %>%
+  dplyr::filter(numeric.sd > 1) %>% # "numeric" is the variable type that we're targeting
+  print()
+```
+
+</div>
+
+# Plotting
+## Khroma - color scales that are nice and colorblind friendly
+
+https://packages.tesselle.org/khroma/
+
+
+```{r}
+library(khroma)
+bright <- colour("bright")
+bright(7)
+```
+
+<div class="fold o">
+```{r}
+# Preview the theme
+plot_scheme(bright(7), colours = TRUE)
+```
+</div>
+
+Use with ggplot2
+
+```{r}
+
+data(mpg, package = "ggplot2")
+
+ggplot2::ggplot(data = mpg) +
+  ggplot2::aes(x = displ, y = hwy, colour = class) +
+  ggplot2::geom_point() +
+  scale_colour_bright()
+```
+
+
