@@ -1,1 +1,1 @@
-You probably want to be at either (https://github.com/abraver) or (https://www.aaronbraver.com)
+You probably want to be at either <https://github.com/abraver> or <https://www.aaronbraver.com>
