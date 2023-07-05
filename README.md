@@ -1,1 +1,1 @@
-You probably want to be at <https://www.aaronbraver.com>, either <https://github.com/abraver>, or <https://abraver.github.io/usefulRstuff>.
+You probably want to be at <https://www.aaronbraver.com>, <https://github.com/abraver>, or <https://abraver.github.io/usefulRstuff>.
